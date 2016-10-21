@@ -1,6 +1,9 @@
 package com.pet.supplies.rest;
-import static org.junit.Assert.*;
 
+/**
+ * @version
+ * @author njanjyal //I removed copyrights
+ */
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
