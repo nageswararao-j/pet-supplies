@@ -1,4 +1,4 @@
-package com.pet.supplies;
+package com.pet.supplies.service.impl;
 
 import com.pet.supplies.domain.Product;
 import com.pet.supplies.repository.ProductRepository;

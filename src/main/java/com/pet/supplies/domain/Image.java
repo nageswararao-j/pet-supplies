@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,7 +27,14 @@ public class Image
    @Column(name = "URL")
    private String url;
 
-   //   private Product product;
+   public Image()
+   {
+
+   }
+
+   @ManyToOne
+   @JoinColumn(name = "product_id")
+   private Product product;
 
    /**
     * Get the img_id.
@@ -92,20 +101,18 @@ public class Image
     * 
     * @return Returns the product as a Product.
     */
-   //   @ManyToOne
-   //   @JoinColumn(name = "PRODUCT_ID")
-   //   public Product getProduct()
-   //   {
-   //      return product;
-   //   }
-   //
-   //   /**
-   //    * Set the product to the specified value.
-   //    * 
-   //    * @param product The product to set.
-   //    */
-   //   public void setProduct(Product product)
-   //   {
-   //      this.product = product;
-   //   }
+   public Product getProduct()
+   {
+      return product;
+   }
+
+   /**
+    * Set the product to the specified value.
+    * 
+    * @param product The product to set.
+    */
+   public void setProduct(Product product)
+   {
+      this.product = product;
+   }
 }

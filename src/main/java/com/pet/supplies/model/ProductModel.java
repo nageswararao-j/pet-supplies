@@ -1,6 +1,8 @@
 package com.pet.supplies.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Getter;
@@ -13,9 +15,9 @@ import lombok.Setter;
 @XmlRootElement
 @Getter
 @Setter
-public class ProductsModel implements Serializable
+public class ProductModel implements Serializable
 {
-   public ProductsModel()
+   public ProductModel()
    {
 
    }
@@ -25,4 +27,17 @@ public class ProductsModel implements Serializable
 
    @XmlElement
    private String productName;
+
+   private BigDecimal price;
+
+   private String currency;
+
+   private boolean status;
+
+   private int quantity;
+
+   private String desc;
+
+   private Set<ImageModel> imageUrls;
+
 }

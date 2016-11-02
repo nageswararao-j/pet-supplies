@@ -1,6 +1,8 @@
 package com.pet.supplies.domain;
 
 import java.math.BigDecimal;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -46,10 +49,11 @@ public class Product
    @Column(name = "DESCRIPTION")
    private String desc;
 
-   //   private Set<Image> imageUrls;
+   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+   private Set<Image> imageUrls;
 
    @ManyToOne
-   @JoinColumn(name = "cat_id")
+   @JoinColumn(name = "CAT_ID")
    private Category category;
 
    /**
@@ -217,19 +221,18 @@ public class Product
     * 
     * @return Returns the imageUrls as a Set<Images>.
     */
-   //   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-   //   public Set<Image> getImageUrls()
-   //   {
-   //      return imageUrls;
-   //   }
-   //
-   //   /**
-   //    * Set the imageUrls to the specified value.
-   //    * 
-   //    * @param imageUrls The imageUrls to set.
-   //    */
-   //   public void setImageUrls(Set<Image> imageUrls)
-   //   {
-   //      this.imageUrls = imageUrls;
-   //   }
+   public Set<Image> getImageUrls()
+   {
+      return imageUrls;
+   }
+
+   /**
+    * Set the imageUrls to the specified value.
+    * 
+    * @param imageUrls The imageUrls to set.
+    */
+   public void setImageUrls(Set<Image> imageUrls)
+   {
+      this.imageUrls = imageUrls;
+   }
 }

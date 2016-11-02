@@ -6,14 +6,14 @@
 	<artifactId>pet-supplies</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-<!-- 	<modules> -->
-<!-- 		<module>pet-supplies-business</module> -->
-<!-- 		<module>pet-supplies-persistence</module> -->
-<!-- 	</modules> -->
+	<!-- <modules> -->
+	<!-- <module>pet-supplies-business</module> -->
+	<!-- <module>pet-supplies-persistence</module> -->
+	<!-- </modules> -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.1.RELEASE</version>
+		<version>1.4.0.RELEASE</version>
 	</parent>
 	<name>Pet Supplies - Online application</name>
 	<properties>
@@ -22,9 +22,16 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
+	<!-- <repositories> -->
+	<!-- <repository> -->
+	<!-- <id>mvnrepository</id> -->
+	<!-- <url>https://repo.maven.apache.org/maven2/</url> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
+
 	<dependencies>
 		<dependency>
-			<groupId>com.sogeti.nl</groupId>
+			<groupId>com.pet.supplies</groupId>
 			<artifactId>pet-supplies-client</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
@@ -80,9 +87,18 @@
 			<version>1.14.8</version>
 		</dependency>
 		<dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -92,15 +108,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<!-- <plugin> -->
-			<!-- <groupId>org.apache.maven.plugins</groupId> -->
-			<!-- <artifactId>maven-compiler-plugin</artifactId> -->
-			<!-- <version>2.3.1</version> -->
-			<!-- <configuration> -->
-			<!-- <source>1.8</source> -->
-			<!-- <target>1.8</target> -->
-			<!-- </configuration> -->
-			<!-- </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 
 
 			<!-- <plugin> -->
