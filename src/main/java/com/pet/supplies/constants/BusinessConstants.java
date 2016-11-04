@@ -17,4 +17,6 @@ public final class BusinessConstants
 
    public static final String EMPTY = "";
 
+   public static final Long ONE = new Long(1);
+
 }

@@ -1,6 +1,7 @@
 package com.pet.supplies.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class AuthenticateUserModel implements Serializable
+public class PaymentModel implements Serializable
 {
 
    /**
@@ -20,18 +21,15 @@ public class AuthenticateUserModel implements Serializable
     */
    private static final long serialVersionUID = 1L;
 
+   private Long payId;
+   private String cardType;
+   private BigDecimal amount;
+   private String currency;
+   private String cardNumber;
+   private int cvv;
+   private Integer expiryMonth;
+   private Integer expiryYear;
    private Long userId;
-
-   private String emailId;
-
-   private String phone;
-
-   private String password;
-
-   private boolean active;
-
-   private String userName;
-
-   private AddressModel address;
+   private Long orderId;
 
 }

@@ -4,6 +4,7 @@ import com.pet.supplies.domain.Address;
 import com.pet.supplies.domain.CartItem;
 import com.pet.supplies.domain.Order;
 import com.pet.supplies.domain.Wallet;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import lombok.Getter;
@@ -17,8 +18,13 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class UserModel
+public class UserModel implements Serializable
 {
+
+   /**
+    * <code>serialVersionUID</code> indicates/is used for.
+    */
+   private static final long serialVersionUID = 1L;
 
    private Long userId;
 

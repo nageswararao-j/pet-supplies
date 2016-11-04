@@ -1,6 +1,7 @@
 package com.pet.supplies.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,26 +13,29 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class AuthenticateUserModel implements Serializable
+public class AddressModel implements Serializable
 {
-
    /**
     * <code>serialVersionUID</code> indicates/is used for.
     */
    private static final long serialVersionUID = 1L;
 
-   private Long userId;
+   private Integer addressId;
 
-   private String emailId;
+   private String address;
+
+   private String city;
+
+   private String state;
+
+   private String zipCode;
+
+   private String email;
 
    private String phone;
 
-   private String password;
+   private String country;
 
-   private boolean active;
-
-   private String userName;
-
-   private AddressModel address;
+   private Date orderDate;
 
 }

@@ -17,6 +17,11 @@ import lombok.Setter;
 @Setter
 public class ProductModel implements Serializable
 {
+   /**
+    * <code>serialVersionUID</code> indicates/is used for.
+    */
+   private static final long serialVersionUID = 1L;
+
    public ProductModel()
    {
 

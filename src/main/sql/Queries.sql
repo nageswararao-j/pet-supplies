@@ -44,6 +44,8 @@ CREATE TABLE `pet_supplies`.`cart` (
 `PRODUCT_ID` INT NOT NULL,
 `QUANTITY` INT NOT NULL,
 `USER_ID` INT NOT NULL,
+`PRICE` float NOT NULL,
+`CURRENCY` VARCHAR(5) NOT NULL,
 PRIMARY KEY (`ID`),
 KEY `fk_user` (`USER_ID`),
 CONSTRAINT `fk_user` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID`)
@@ -51,8 +53,14 @@ CONSTRAINT `fk_user` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID`)
 
 CREATE TABLE `pet_supplies`.`address` (
 `ADDRESS_ID` INT NOT NULL AUTO_INCREMENT,
-`BILLING_ADDRESS` VARCHAR(40) NOT NULL,
-`SHIPPING_ADDRESS` VARCHAR(40) NOT NULL,
+`ADDRESS` VARCHAR(200) NOT NULL,
+`CITY` VARCHAR(50) NOT NULL,
+`STATE` VARCHAR(50) NOT NULL,
+`ZIP_CODE` VARCHAR(50) NOT NULL,
+`EMAIL` VARCHAR(50) NOT NULL,
+`PHONE` VARCHAR(50) NOT NULL,
+`COUNTRY` VARCHAR(20) NOT NULL,
+`ORDER_DATE` DATE NOT NULL,
 `USER_ID` INT NOT NULL,
 PRIMARY KEY (`ADDRESS_ID`),
 KEY `fk_user_address` (`USER_ID`),
@@ -62,22 +70,21 @@ CONSTRAINT `fk_user_address` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID
 
 CREATE TABLE `pet_supplies`.`order` (
 `ORDER_ID` INT NOT NULL AUTO_INCREMENT,
+`PRODUCT_ID` INT NOT NULL,
+`PRODUCT_NAME` VARCHAR(100),
+`PRODUCT_PRICE` float,
+`CURRENCY` VARCHAR(10),
+`QUANTITY` INT(10),
+`STATUS` VARCHAR(50),
+`SHIPPING_ADDRESS` VARCHAR(10000),
+`ORDER_DATE` datetime,
 `USER_ID` INT NOT NULL,
 PRIMARY KEY (`ORDER_ID`),
 KEY `fk_order_user` (`USER_ID`),
 CONSTRAINT `fk_order_user` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID`)
 );
 
-CREATE TABLE `pet_supplies`.`ordered_product` (
-`ORDERED_ID` INT NOT NULL AUTO_INCREMENT,
-`PRODUCT_NAME` VARCHAR(10) NOT NULL,
-`PRODUCT_PRICE` INT NOT NULL,
-`CURRENCY` VARCHAR(5) NOT NULL,
-`ORDER_ID` INT NOT NULL,
-PRIMARY KEY (`ORDERED_ID`),
-KEY `fk_ordered_product` (`ORDER_ID`),
-CONSTRAINT `fk_ordered_product` FOREIGN KEY (`ORDER_ID`) references `order` (`ORDER_ID`)
-);
+commit;
 
 CREATE TABLE `pet_supplies`.`wallet` (
 `WALLET_ID` INT NOT NULL AUTO_INCREMENT,
@@ -99,6 +106,20 @@ CREATE TABLE `pet_supplies`.`authenticate_user` (
 PRIMARY KEY (`ID`)
 );
 
+   
+CREATE TABLE `pet_supplies`.`payment` (
+`PAY_ID` INT NOT NULL AUTO_INCREMENT,
+`CARD_TYPE` VARCHAR(20) NOT NULL,
+`AMOUNT` float NOT NULL,
+`CURRENCY` VARCHAR(10) NOT NULL,
+`CARD_NUMBER` VARCHAR(100) NOT NULL,
+`CVV` INT(10) NOT NULL,
+`EXPIRY_MONTH` INT(10) NOT NULL,
+`EXPIRY_YEAR` INT(20) NOT NULL,
+`USER_ID` INT(20) NOT NULL,
+`ORDER_ID` INT(20) NOT NULL,
+PRIMARY KEY (`PAY_ID`)
+);
 
 INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('100', 'Cats', 'CAT');
 
@@ -148,8 +169,15 @@ INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUE
 INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2005', 'Pedigree Adult Dog Food', 'Pedigree Adult Dog Food Chicken', '500', 'EUR', '1', '1', '101');
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('14', 'Dogs', '/images/PedigreeAdultDogFoodChicken.jpg', '2005');
 
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2006', 'Choostix Dog Feeding Bowl Steel', 'Choostix Dog Feeding Bowl Steel', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('15', 'Dogs', '/images/ChoostixDogFeedingBowlSteel.jpg', '2006');
+
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2007', 'Royal Canin Giant Puppy', 'Royal Canin Giant Puppy, 4 kg', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('16', 'Dogs', '/images/RoyalCaninGiantPuppy.jpg', '2007');
+
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2008', 'Choostix Dog Rope', 'Choostix Dog Rope Chain Synthetic Yarn, Medium', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('17', 'Dogs', '/images/ChoostixDogRope.jpg', '2008');
 
 
 INSERT INTO `pet_supplies`.`user` (`USER_ID`, `PHONE`, `EMAIL_ID`, `NAME`) VALUES ('1000', '9886162877', 'nageswararao.janjyala@capgemini.com', 'Nageswararao');
 
-commit;

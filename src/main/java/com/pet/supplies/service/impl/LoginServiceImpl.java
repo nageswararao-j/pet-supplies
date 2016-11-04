@@ -1,8 +1,10 @@
 package com.pet.supplies.service.impl;
 
+import com.pet.supplies.domain.Address;
 import com.pet.supplies.domain.AuthenticateUser;
 import com.pet.supplies.domain.User;
 import com.pet.supplies.mapper.EntityToModelMapper;
+import com.pet.supplies.model.AddressModel;
 import com.pet.supplies.model.AuthenticateUserModel;
 import com.pet.supplies.repository.LoginRepository;
 import com.pet.supplies.repository.UserRepository;
@@ -48,6 +50,9 @@ public class LoginServiceImpl implements LoginService
             User user = getUser(authUser);
             if (user != null)
             {
+               Address address = user.getAddress();
+               AddressModel addressModel = EntityToModelMapper.mapAddressEntityToAddressModel(address);
+               authModel.setAddress(addressModel);
                authModel.setUserName(user.getName());
             }
          }

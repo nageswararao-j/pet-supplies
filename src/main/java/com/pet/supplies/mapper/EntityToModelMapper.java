@@ -1,14 +1,18 @@
 package com.pet.supplies.mapper;
 
+import com.pet.supplies.domain.Address;
 import com.pet.supplies.domain.AuthenticateUser;
 import com.pet.supplies.domain.CartItem;
 import com.pet.supplies.domain.Category;
 import com.pet.supplies.domain.Image;
+import com.pet.supplies.domain.Order;
 import com.pet.supplies.domain.Product;
+import com.pet.supplies.model.AddressModel;
 import com.pet.supplies.model.AuthenticateUserModel;
 import com.pet.supplies.model.CartItemModel;
 import com.pet.supplies.model.CategoryModel;
 import com.pet.supplies.model.ImageModel;
+import com.pet.supplies.model.OrderModel;
 import com.pet.supplies.model.ProductModel;
 import com.pet.supplies.model.UserModel;
 import java.util.ArrayList;
@@ -163,12 +167,65 @@ public class EntityToModelMapper
    public static CartItemModel mapCartItemEntityToCartItemModel(CartItem item)
    {
       CartItemModel model = new CartItemModel();
-      model.setId(item.getId());
-      model.setProductId(item.getProductId());
-      model.setQuantity(item.getQuantity());
-      model.setUserId(item.getUser().getUserId());
-      model.setProductName(item.getProductName());
+      if (item != null)
+      {
+         model.setId(item.getId());
+         model.setProductId(item.getProductId());
+         model.setQuantity(item.getQuantity());
+         model.setUserId(item.getUser().getUserId());
+         model.setProductName(item.getProductName());
+         model.setPrice(item.getPrice());
+         model.setCurrency(item.getCurrency());
+      }
       return model;
    }
 
+   /**
+    * TODO
+    * 
+    * @param newOrder
+    * @return
+    */
+   public static OrderModel mapOrderEntityToOrderModel(Order newOrder)
+   {
+      OrderModel model = new OrderModel();
+      if (newOrder != null)
+      {
+         model.setOrderId(newOrder.getOrderId());
+         model.setUserId(newOrder.getUser().getUserId());
+         model.setProductId(newOrder.getProductId());
+         model.setProductName(newOrder.getProductName());
+         model.setProductPrice(newOrder.getProductPrice());
+         model.setCurrency(newOrder.getCurrency());
+         model.setQuantity(newOrder.getQuantity());
+         model.setStatus(newOrder.getStatus());
+         model.setShippingAddress(newOrder.getShippingAddress());
+         model.setOrderDate(newOrder.getOrderDate());
+      }
+      return model;
+   }
+
+   /**
+    * TODO
+    * 
+    * @param address
+    * @return
+    */
+   public static AddressModel mapAddressEntityToAddressModel(Address address)
+   {
+      AddressModel model = new AddressModel();
+      if (address != null)
+      {
+         model.setAddressId(address.getAddressId());
+         model.setAddress(address.getAddress());
+         model.setCity(address.getCity());
+         model.setState(address.getState());
+         model.setZipCode(address.getZipCode());
+         model.setEmail(address.getEmail());
+         model.setPhone(address.getPhone());
+         model.setOrderDate(address.getOrderDate());
+         model.setCountry(address.getCountry());
+      }
+      return model;
+   }
 }

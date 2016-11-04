@@ -1,6 +1,6 @@
 package com.pet.supplies.domain;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,10 +22,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Table(name = "CART")
-public class CartItem implements Serializable
+public class CartItem
 {
-   private static final long serialVersionUID = 1L;
-
    @Id
    @Column(name = "ID")
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +37,12 @@ public class CartItem implements Serializable
 
    @Column(name = "PRODUCT_NAME")
    private String productName;
+
+   @Column(name = "PRICE")
+   private BigDecimal price;
+
+   @Column(name = "CURRENCY")
+   private String currency;
 
    @ManyToOne
    @JoinColumn(name = "USER_ID")

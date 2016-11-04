@@ -44,7 +44,10 @@ public class LoginController
       }
 
       AuthenticateUserModel userModel = loginService.validateLogin(model);
-
+      if (userModel != null && !userModel.isActive())
+      {
+         return new ResponseEntity<AuthenticateUserModel>(model, HttpStatus.NOT_FOUND);
+      }
       return new ResponseEntity<AuthenticateUserModel>(userModel, HttpStatus.OK);
 
    }

@@ -1,5 +1,7 @@
 package com.pet.supplies.domain;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,25 +25,42 @@ import lombok.Setter;
 @Table(name = "ORDER")
 public class Order
 {
+   public Order()
+   {
+
+   }
+
    @Id
    @Column(name = "ORDER_ID")
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long orderId;
 
+   @Column(name = "PRODUCT_ID")
+   private Long productId;
+
+   @Column(name = "PRODUCT_NAME")
+   private String productName;
+
+   @Column(name = "PRODUCT_PRICE")
+   private BigDecimal productPrice;
+
+   @Column(name = "CURRENCY")
+   private String currency;
+
+   @Column(name = "QUANTITY")
+   private Integer quantity;
+
+   @Column(name = "STATUS")
+   private String status;
+
+   @Column(name = "SHIPPING_ADDRESS")
+   private String shippingAddress;
+
+   @Column(name = "ORDER_DATE")
+   private Date orderDate;
+
    @ManyToOne
    @JoinColumn(name = "USER_ID")
    private User user;
-
-   //
-   //   @Column(name = "USER_ID")
-   //   private Long userId;
-
-   //   @OneToMany(mappedBy = "orderedProduct", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   //   private List<OrderedProduct> orderedProducts;
-
-   public Order()
-   {
-
-   }
 
 }

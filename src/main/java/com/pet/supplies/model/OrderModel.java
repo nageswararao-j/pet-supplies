@@ -1,6 +1,8 @@
 package com.pet.supplies.model;
 
-import com.pet.supplies.domain.User;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,10 +14,31 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class OrderModel
+public class OrderModel implements Serializable
 {
+   /**
+    * <code>serialVersionUID</code> indicates/is used for.
+    */
+   private static final long serialVersionUID = 1L;
+
    private Long orderId;
 
-   private User user;
+   private Long productId;
+
+   private Long userId;
+
+   private String productName;
+
+   private BigDecimal productPrice;
+
+   private String currency;
+
+   private Integer quantity;
+
+   private String status;
+
+   private String shippingAddress;
+
+   private Date orderDate;
 
 }

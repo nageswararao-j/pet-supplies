@@ -48,7 +48,7 @@ public class CartServiceImpl implements CartService
 
    /*
     * (non-Javadoc)
-    * @see com.pet.supplies.service.CartService#save(com.pet.supplies.domain.CartItem)
+    * @see com.pet.supplies.service.CartService#saveCartItem(com.pet.supplies.domain.CartItem)
     */
    @Override
    public CartItemModel saveCartItem(CartItemModel model)
@@ -62,7 +62,7 @@ public class CartServiceImpl implements CartService
 
    /*
     * (non-Javadoc)
-    * @see com.pet.supplies.service.CartService#delete(com.pet.supplies.model.CartItemModel)
+    * @see com.pet.supplies.service.CartService#deleteCartItem(com.pet.supplies.model.CartItemModel)
     */
    @Override
    public void deleteCartItem(CartItemModel model)
@@ -76,7 +76,7 @@ public class CartServiceImpl implements CartService
 
    /*
     * (non-Javadoc)
-    * @see com.pet.supplies.service.CartService#updateCartItem(com.pet.supplies.model.CartItemModel)
+    * @see com.pet.supplies.service.CartService#updateCartItemQuantity(com.pet.supplies.model.CartItemModel)
     */
    @Override
    public Integer updateCartItemQuantity(CartItemModel model)

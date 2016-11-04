@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------
  **     Ident: Delivery Center Java
  **    Author: njanjyal
- ** Copyright: (c) Nov 2, 2016 Sogeti Nederland B.V. All Rights Reserved.
+ ** Copyright: (c) Nov 4, 2016 Sogeti Nederland B.V. All Rights Reserved.
  **------------------------------------------------------------------------------
  ** Sogeti Nederland B.V.            |  No part of this file may be reproduced  
  ** Distributed Software Engineering |  or transmitted in any form or by any        
@@ -10,14 +10,27 @@
  ** The Netherlands                  |  permission of the copyright holder.
  *------------------------------------------------------------------------------
  */
-package com.pet.supplies.elasticsearch;
+package com.pet.supplies.service;
+
+import com.pet.supplies.model.OrderModel;
+import java.util.List;
+import java.util.Set;
 
 /**
  * ????
  *
  * @version $Id:$
- * @author njanjyal (c) Nov 2, 2016, Sogeti B.V.
+ * @author njanjyal (c) Nov 4, 2016, Sogeti B.V.
  */
-public class ElasticsearchService
+public interface OrderService
 {
+
+   /**
+    * TODO
+    * 
+    * @param models
+    * @return
+    */
+   Set<OrderModel> saveOrder(List<OrderModel> models);
+
 }
