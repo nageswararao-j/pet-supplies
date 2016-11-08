@@ -1,18 +1,19 @@
 package com.pet.supplies.mapper;
 
 import com.pet.supplies.domain.Address;
-import com.pet.supplies.domain.AuthenticateUser;
 import com.pet.supplies.domain.CartItem;
 import com.pet.supplies.domain.Category;
 import com.pet.supplies.domain.Image;
-import com.pet.supplies.domain.Order;
+import com.pet.supplies.domain.Orders;
 import com.pet.supplies.domain.Product;
+
+import com.pet.supplies.domain.AuthenticateUser;
 import com.pet.supplies.model.AddressModel;
 import com.pet.supplies.model.AuthenticateUserModel;
 import com.pet.supplies.model.CartItemModel;
 import com.pet.supplies.model.CategoryModel;
 import com.pet.supplies.model.ImageModel;
-import com.pet.supplies.model.OrderModel;
+import com.pet.supplies.model.OrdersModel;
 import com.pet.supplies.model.ProductModel;
 import com.pet.supplies.model.UserModel;
 import java.util.ArrayList;
@@ -172,7 +173,7 @@ public class EntityToModelMapper
          model.setId(item.getId());
          model.setProductId(item.getProductId());
          model.setQuantity(item.getQuantity());
-         model.setUserId(item.getUser().getUserId());
+         model.setUserId(item.getUser().getId());
          model.setProductName(item.getProductName());
          model.setPrice(item.getPrice());
          model.setCurrency(item.getCurrency());
@@ -186,13 +187,13 @@ public class EntityToModelMapper
     * @param newOrder
     * @return
     */
-   public static OrderModel mapOrderEntityToOrderModel(Order newOrder)
+   public static OrdersModel mapOrderEntityToOrderModel(Orders newOrder)
    {
-      OrderModel model = new OrderModel();
+      OrdersModel model = new OrdersModel();
       if (newOrder != null)
       {
          model.setOrderId(newOrder.getOrderId());
-         model.setUserId(newOrder.getUser().getUserId());
+         model.setUserId(newOrder.getUser().getId());
          model.setProductId(newOrder.getProductId());
          model.setProductName(newOrder.getProductName());
          model.setProductPrice(newOrder.getProductPrice());
@@ -223,9 +224,26 @@ public class EntityToModelMapper
          model.setZipCode(address.getZipCode());
          model.setEmail(address.getEmail());
          model.setPhone(address.getPhone());
-         model.setOrderDate(address.getOrderDate());
          model.setCountry(address.getCountry());
       }
       return model;
+   }
+
+   /**
+    * TODO
+    * 
+    * @param orders
+    * @return
+    */
+   public static List<OrdersModel> mapOrderEntitiesToOrderModels(List<Orders> orders)
+   {
+      List<OrdersModel> orderModels = new ArrayList<OrdersModel>();
+      if (!CollectionUtils.isEmpty(orders))
+      {
+         orders.forEach(order -> {
+            orderModels.add(mapOrderEntityToOrderModel(order));
+         });
+      }
+      return orderModels;
    }
 }

@@ -1,6 +1,7 @@
 package com.pet.supplies.repository;
 
 import com.pet.supplies.domain.CartItem;
+
 import java.util.List;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,7 +35,7 @@ public interface CartRepository extends CrudRepository<CartItem, Long>
     * 
     * @param userId
     */
-   @Query("select cart from CartItem cart inner join cart.user u where u.userId=:userId")
+   @Query("select cart from CartItem cart inner join cart.user u where u.id=:userId")
    public List<CartItem> findCartItemsByUser(@Param("userId") Long userId);
 
    /**
@@ -44,7 +45,7 @@ public interface CartRepository extends CrudRepository<CartItem, Long>
     * @return
     */
    @Modifying
-   @Query("update CartItem cart set cart.quantity=:quantity where cart.user.userId=:userId and cart.productId=:productId")
+   @Query("update CartItem cart set cart.quantity=:quantity where cart.user.id=:userId and cart.productId=:productId")
    public Integer updateQuantity(@Param("userId") Long userId, @Param("productId") Long productId, @Param("quantity") Integer quantity);
 
 }

@@ -4,6 +4,8 @@ package com.pet.supplies.rest;
  * @version
  * @author njanjyal //I removed copyrights
  */
+import org.apache.log4j.Logger;
+
 import com.pet.supplies.model.AuthenticateUserModel;
 import com.pet.supplies.service.LoginService;
 import lombok.Setter;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class LoginController
 {
+   Logger logger = Logger.getLogger(LoginController.class);
+   
    @Autowired
    @Setter
    private LoginService loginService;
@@ -38,15 +42,23 @@ public class LoginController
    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<AuthenticateUserModel> login(@RequestBody AuthenticateUserModel model)
    {
+      logger.info("LoginController.login called");
+      AuthenticateUserModel userModel = null;
       if (model == null)
       {
          return new ResponseEntity<AuthenticateUserModel>(model, HttpStatus.NOT_FOUND);
       }
-
-      AuthenticateUserModel userModel = loginService.validateLogin(model);
+      if (model.isRegister())
+      {
+         userModel = loginService.registerNewUser(model);
+      }
+      else
+      {
+         userModel = loginService.validateLogin(model);
+      }
       if (userModel != null && !userModel.isActive())
       {
-         return new ResponseEntity<AuthenticateUserModel>(model, HttpStatus.NOT_FOUND);
+         return new ResponseEntity<AuthenticateUserModel>(model, HttpStatus.UNAUTHORIZED);
       }
       return new ResponseEntity<AuthenticateUserModel>(userModel, HttpStatus.OK);
 

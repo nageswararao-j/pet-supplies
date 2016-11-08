@@ -18,4 +18,12 @@ public interface LoginService
     */
    AuthenticateUserModel validateLogin(AuthenticateUserModel model);
 
+   /**
+    * TODO
+    * 
+    * @param model
+    * @return
+    */
+   AuthenticateUserModel registerNewUser(AuthenticateUserModel model);
+
 }

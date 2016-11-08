@@ -31,10 +31,8 @@ CREATE TABLE `pet_supplies`.`product` (
 );
 
 CREATE TABLE `pet_supplies`.`user` (
-`USER_ID` INT NOT NULL AUTO_INCREMENT,
+`USER_ID` INT(10) NOT NULL AUTO_INCREMENT,
 `NAME` VARCHAR(30) NOT NULL,
-`EMAIL_ID` VARCHAR(20) NOT NULL,
-`PHONE` varchar(10) NOT NULL,
 PRIMARY KEY (`USER_ID`)
 );
 
@@ -42,6 +40,7 @@ PRIMARY KEY (`USER_ID`)
 CREATE TABLE `pet_supplies`.`cart` (
 `ID` INT NOT NULL AUTO_INCREMENT,
 `PRODUCT_ID` INT NOT NULL,
+`PRODUCT_NAME` VARCHAR(500),
 `QUANTITY` INT NOT NULL,
 `USER_ID` INT NOT NULL,
 `PRICE` float NOT NULL,
@@ -60,7 +59,6 @@ CREATE TABLE `pet_supplies`.`address` (
 `EMAIL` VARCHAR(50) NOT NULL,
 `PHONE` VARCHAR(50) NOT NULL,
 `COUNTRY` VARCHAR(20) NOT NULL,
-`ORDER_DATE` DATE NOT NULL,
 `USER_ID` INT NOT NULL,
 PRIMARY KEY (`ADDRESS_ID`),
 KEY `fk_user_address` (`USER_ID`),
@@ -68,10 +66,10 @@ CONSTRAINT `fk_user_address` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID
 );
 
 
-CREATE TABLE `pet_supplies`.`order` (
+CREATE TABLE `pet_supplies`.`orders` (
 `ORDER_ID` INT NOT NULL AUTO_INCREMENT,
 `PRODUCT_ID` INT NOT NULL,
-`PRODUCT_NAME` VARCHAR(100),
+`PRODUCT_NAME` VARCHAR(500),
 `PRODUCT_PRICE` float,
 `CURRENCY` VARCHAR(10),
 `QUANTITY` INT(10),
@@ -98,11 +96,12 @@ CONSTRAINT `fk_user_wallet` FOREIGN KEY (`USER_ID`) references `USER` (`USER_ID`
 
 CREATE TABLE `pet_supplies`.`authenticate_user` (
 `ID` INT NOT NULL AUTO_INCREMENT,
-`USER_ID` INT NOT NULL,
 `PASSWORD` VARCHAR(50) NOT NULL,
 `EMAIL_ID` VARCHAR(100) NOT NULL,
 `PHONE` VARCHAR(50) NOT NULL,
 `ACTIVE` boolean NOT NULL,
+`PROFILE` VARCHAR(50) NOT NULL,
+`USER_ID` INT NOT NULL,
 PRIMARY KEY (`ID`)
 );
 
@@ -122,6 +121,9 @@ PRIMARY KEY (`PAY_ID`)
 );
 
 INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('100', 'Cats', 'CAT');
+INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('101', 'Dogs', 'DOG');
+INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('102', 'Birds', 'BIRDS');
+INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('103', 'Rabbit ', 'RABBIT');
 
 INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1000', 'BENGAL', 'Bengal cat', '2500', 'EUR', '1', '1', '100');
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('2', 'Cats', '/images/cats/himalayan.jpg', '1000');
@@ -147,7 +149,7 @@ INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `pric
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('13', 'Cats', '/images/cats/DroolsOceanFish.jpg', '1007');
 
 
-INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('101', 'Dogs', 'DOG');
+
 
 INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2000', 'Dachshund', 'Dachshund', '4500', 'EUR', '1', '1', '101');
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('3', 'Dogs', '/images/dachshund.jpg', '2000');
@@ -179,5 +181,5 @@ INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `pric
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('17', 'Dogs', '/images/ChoostixDogRope.jpg', '2008');
 
 
-INSERT INTO `pet_supplies`.`user` (`USER_ID`, `PHONE`, `EMAIL_ID`, `NAME`) VALUES ('1000', '9886162877', 'nageswararao.janjyala@capgemini.com', 'Nageswararao');
+commit;
 

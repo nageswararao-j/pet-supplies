@@ -1,9 +1,5 @@
 package com.pet.supplies.model;
 
-import com.pet.supplies.domain.Address;
-import com.pet.supplies.domain.CartItem;
-import com.pet.supplies.domain.Order;
-import com.pet.supplies.domain.Wallet;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -32,16 +28,16 @@ public class UserModel implements Serializable
 
    private String password;
 
-   private Set<CartItem> cartItems;
+   private Set<CartItemModel> cartItems;
 
    private String emailId;
 
    private String phone;
 
-   private List<Address> addresses;
+   private AddressModel address;
 
-   private List<Order> orders;
+   private List<OrdersModel> orders;
 
-   private Wallet wallet;
+   private WalletModel wallet;
 
 }

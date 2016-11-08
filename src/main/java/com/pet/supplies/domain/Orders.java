@@ -1,6 +1,5 @@
 package com.pet.supplies.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,18 +21,14 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "ORDER")
-public class Order
+@Table(name = "ORDERS")
+public class Orders
 {
-   public Order()
-   {
-
-   }
 
    @Id
    @Column(name = "ORDER_ID")
    @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long orderId;
+   private Integer orderId;
 
    @Column(name = "PRODUCT_ID")
    private Long productId;
@@ -42,7 +37,7 @@ public class Order
    private String productName;
 
    @Column(name = "PRODUCT_PRICE")
-   private BigDecimal productPrice;
+   private Float productPrice;
 
    @Column(name = "CURRENCY")
    private String currency;
@@ -63,4 +58,8 @@ public class Order
    @JoinColumn(name = "USER_ID")
    private User user;
 
+   public Orders()
+   {
+
+   }
 }

@@ -34,4 +34,10 @@ public class AuthenticateUserModel implements Serializable
 
    private AddressModel address;
 
+   private boolean register;
+
+   private UserModel user;
+   
+   private String profile;
+
 }

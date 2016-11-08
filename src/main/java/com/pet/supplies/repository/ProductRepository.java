@@ -1,6 +1,7 @@
 package com.pet.supplies.repository;
 
 import com.pet.supplies.domain.Product;
+
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,6 @@
 package com.pet.supplies.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,14 +13,14 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class OrderModel implements Serializable
+public class OrdersModel implements Serializable
 {
    /**
     * <code>serialVersionUID</code> indicates/is used for.
     */
    private static final long serialVersionUID = 1L;
 
-   private Long orderId;
+   private Integer orderId;
 
    private Long productId;
 
@@ -29,7 +28,7 @@ public class OrderModel implements Serializable
 
    private String productName;
 
-   private BigDecimal productPrice;
+   private Float productPrice;
 
    private String currency;
 

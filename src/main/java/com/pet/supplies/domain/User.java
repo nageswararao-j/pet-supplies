@@ -29,25 +29,25 @@ public class User
    @Id
    @Column(name = "USER_ID")
    @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long userId;
+   private Long id;
 
    @Column(name = "NAME")
    private String name;
 
-   private transient String emailId;
-
-   private transient String phone;
-
-   private transient String password;
+   //   private transient String emailId;
+   //
+   //   private transient String phone;
+   //
+   //   private transient String password;
 
    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Set<CartItem> cartItems;
 
-   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    private Address address;
 
    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-   private Set<Order> orders;
+   private Set<Orders> orders;
 
    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Wallet wallet;

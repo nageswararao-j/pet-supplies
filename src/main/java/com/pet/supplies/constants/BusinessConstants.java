@@ -15,6 +15,8 @@ public final class BusinessConstants
 
    public static final String UPDATED = "UPDATED";
 
+   public static final String REGISTER = "REGISTER";
+
    public static final String EMPTY = "";
 
    public static final Long ONE = new Long(1);

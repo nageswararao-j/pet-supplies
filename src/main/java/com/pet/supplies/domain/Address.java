@@ -1,6 +1,5 @@
 package com.pet.supplies.domain;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,9 +49,6 @@ public class Address
 
    @Column(name = "COUNTRY")
    private String country;
-
-   @Column(name = "ORDER_DATE")
-   private Date orderDate;
 
    @OneToOne
    @JoinColumn(name = "USER_ID")
