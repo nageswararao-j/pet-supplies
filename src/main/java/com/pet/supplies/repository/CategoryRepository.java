@@ -1,6 +1,6 @@
 package com.pet.supplies.repository;
 
-import com.pet.supplies.domain.Category;
+import com.pet.supplies.common.domain.Category;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;

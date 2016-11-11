@@ -1,6 +1,6 @@
 package com.pet.supplies.rest;
 
-import com.pet.supplies.model.OrdersModel;
+import com.pet.supplies.common.model.OrdersModel;
 import com.pet.supplies.service.OrderService;
 import java.util.List;
 import java.util.Set;

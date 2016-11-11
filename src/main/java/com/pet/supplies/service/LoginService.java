@@ -1,6 +1,6 @@
 package com.pet.supplies.service;
 
-import com.pet.supplies.model.AuthenticateUserModel;
+import com.pet.supplies.common.model.AuthenticateUserModel;
 
 /**
  * ????

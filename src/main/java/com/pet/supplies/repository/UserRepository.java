@@ -1,6 +1,6 @@
 package com.pet.supplies.repository;
 
-import com.pet.supplies.domain.User;
+import com.pet.supplies.common.domain.User;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -16,9 +16,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>
 {
-   @Query("from User user where user.id=:userId")
-   public User findOne(@Param("userId") Long userId);
 
-   @SuppressWarnings("unchecked")
-   public User save(User user);
 }

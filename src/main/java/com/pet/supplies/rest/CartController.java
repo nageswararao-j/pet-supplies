@@ -1,8 +1,8 @@
 package com.pet.supplies.rest;
 
-import com.pet.supplies.constants.BusinessConstants;
+import com.pet.supplies.common.constants.BusinessConstants;
 import com.pet.supplies.messages.MessageTemplate;
-import com.pet.supplies.model.CartItemModel;
+import com.pet.supplies.common.model.CartItemModel;
 import com.pet.supplies.service.CartService;
 import java.util.List;
 import lombok.Setter;

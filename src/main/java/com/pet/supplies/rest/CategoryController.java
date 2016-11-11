@@ -1,7 +1,7 @@
 package com.pet.supplies.rest;
 
-import com.pet.supplies.constants.BusinessConstants;
-import com.pet.supplies.model.CategoryModel;
+import com.pet.supplies.common.constants.BusinessConstants;
+import com.pet.supplies.common.model.CategoryModel;
 import com.pet.supplies.service.CategoryService;
 import java.util.ArrayList;
 import java.util.List;

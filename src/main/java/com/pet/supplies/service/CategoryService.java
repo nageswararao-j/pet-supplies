@@ -1,6 +1,6 @@
 package com.pet.supplies.service;
 
-import com.pet.supplies.model.CategoryModel;
+import com.pet.supplies.common.model.CategoryModel;
 import java.util.List;
 
 /**

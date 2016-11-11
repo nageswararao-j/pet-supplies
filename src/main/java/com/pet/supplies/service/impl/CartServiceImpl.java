@@ -1,11 +1,11 @@
 package com.pet.supplies.service.impl;
 
-import com.pet.supplies.domain.CartItem;
-import com.pet.supplies.domain.User;
+import com.pet.supplies.common.mapper.ModelToEntityMapper;
 
-import com.pet.supplies.mapper.EntityToModelMapper;
-import com.pet.supplies.mapper.ModelToEntityMapper;
-import com.pet.supplies.model.CartItemModel;
+import com.pet.supplies.common.mapper.EntityToModelMapper;
+import com.pet.supplies.common.domain.CartItem;
+import com.pet.supplies.common.domain.User;
+import com.pet.supplies.common.model.CartItemModel;
 import com.pet.supplies.repository.CartRepository;
 import com.pet.supplies.repository.UserRepository;
 import com.pet.supplies.service.CartService;
@@ -49,7 +49,7 @@ public class CartServiceImpl implements CartService
 
    /*
     * (non-Javadoc)
-    * @see com.pet.supplies.service.CartService#saveCartItem(com.pet.supplies.domain.CartItem)
+    * @see com.pet.supplies.service.CartService#saveCartItem(com.pet.supplies.common.domain.CartItem)
     */
    @Override
    public CartItemModel saveCartItem(CartItemModel model)
@@ -63,7 +63,7 @@ public class CartServiceImpl implements CartService
 
    /*
     * (non-Javadoc)
-    * @see com.pet.supplies.service.CartService#deleteCartItem(com.pet.supplies.model.CartItemModel)
+    * @see com.pet.supplies.service.CartService#deleteCartItem(com.pet.supplies.common.model.CartItemModel)
     */
    @Override
    public void deleteCartItem(CartItemModel model)
@@ -77,7 +77,7 @@ public class CartServiceImpl implements CartService
 
    /*
     * (non-Javadoc)
-    * @see com.pet.supplies.service.CartService#updateCartItemQuantity(com.pet.supplies.model.CartItemModel)
+    * @see com.pet.supplies.service.CartService#updateCartItemQuantity(com.pet.supplies.common.model.CartItemModel)
     */
    @Override
    public Integer updateCartItemQuantity(CartItemModel model)

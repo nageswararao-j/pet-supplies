@@ -1,6 +1,6 @@
 package com.pet.supplies.service;
 
-import com.pet.supplies.domain.Product;
+import com.pet.supplies.common.domain.Product;
 
 import java.util.List;
 

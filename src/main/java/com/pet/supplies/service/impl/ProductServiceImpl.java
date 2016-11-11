@@ -1,6 +1,6 @@
 package com.pet.supplies.service.impl;
 
-import com.pet.supplies.domain.Product;
+import com.pet.supplies.common.domain.Product;
 
 import com.pet.supplies.repository.ProductRepository;
 import com.pet.supplies.service.ProductService;

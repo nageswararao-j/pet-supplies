@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableAutoConfiguration
 @EnableJpaRepositories("com.pet.supplies.repository")
 @ComponentScan("com.pet.supplies")
-@EntityScan("com.pet.supplies.domain")
+@EntityScan("com.pet.supplies.common.domain")
 public class Application extends SpringBootServletInitializer
 {
 

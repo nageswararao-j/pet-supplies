@@ -1,6 +1,6 @@
 package com.pet.supplies.repository;
 
-import com.pet.supplies.domain.CartItem;
+import com.pet.supplies.common.domain.CartItem;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,17 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CartRepository extends CrudRepository<CartItem, Long>
 {
-   /**
-    * 
-    */
-   @Override
-   @SuppressWarnings("unchecked")
-   public CartItem save(CartItem cartItem);
-
-   /**
-    * 
-    */
-   public void delete(CartItem model);
 
    /**
     * TODO

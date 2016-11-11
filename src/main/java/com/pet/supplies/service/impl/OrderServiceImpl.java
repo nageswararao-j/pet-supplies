@@ -1,12 +1,12 @@
 package com.pet.supplies.service.impl;
 
-import com.pet.supplies.domain.Orders;
-import com.pet.supplies.domain.User;
+import com.pet.supplies.common.mapper.EntityToModelMapper;
 
-import com.pet.supplies.constants.BusinessConstants;
-import com.pet.supplies.mapper.EntityToModelMapper;
-import com.pet.supplies.mapper.ModelToEntityMapper;
-import com.pet.supplies.model.OrdersModel;
+import com.pet.supplies.common.mapper.ModelToEntityMapper;
+import com.pet.supplies.common.domain.Orders;
+import com.pet.supplies.common.domain.User;
+import com.pet.supplies.common.constants.BusinessConstants;
+import com.pet.supplies.common.model.OrdersModel;
 import com.pet.supplies.repository.OrderRepository;
 import com.pet.supplies.repository.UserRepository;
 import com.pet.supplies.service.OrderService;

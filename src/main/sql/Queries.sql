@@ -1,13 +1,23 @@
 CREATE TABLE `pet_supplies`.`category` (
-`CAT_ID` INT NOT NULL,
+`CAT_ID` INT NOT NULL AUTO_INCREMENT,
 `NAME` VARCHAR(40),
 `CODE` VARCHAR(20),
 PRIMARY KEY (`CAT_ID`)
 );
 
+CREATE TABLE `pet_supplies`.`seller` (
+`SELLER_ID` INT(10) NOT NULL AUTO_INCREMENT,
+`NAME` VARCHAR(40),
+`CODE` VARCHAR(20),
+`EMAIL` VARCHAR(50) NOT NULL,
+`PHONE` VARCHAR(50) NOT NULL,
+PRIMARY KEY (`SELLER_ID`)
+);
+
+
 CREATE TABLE `pet_supplies`.`image` (
-`IMG_ID` INT NOT NULL,
-`NAME` VARCHAR(20),
+`IMG_ID` INT NOT NULL AUTO_INCREMENT,
+`NAME` VARCHAR(200),
 `URL` VARCHAR(40),
 `product_id` INT(11) NOT NULL,
 PRIMARY KEY (`IMG_ID`),
@@ -22,12 +32,15 @@ CREATE TABLE `pet_supplies`.`product` (
   `description` varchar(512) NOT NULL,
   `price` float NOT NULL,
   `currency` VARCHAR(10),
-  `status` boolean,
+  `status` VARCHAR(20) NOT NULL,
   `quantity` INT NOT NULL,
   `cat_id` INT(11) NOT NULL,
+  `seller_id` INT(10) NOT NULL,
   PRIMARY KEY (`product_id`),
   KEY `fk_category` (`cat_id`),
-  CONSTRAINT `fk_category` FOREIGN KEY (`cat_id`) REFERENCES `category` (`cat_id`)
+  CONSTRAINT `fk_category` FOREIGN KEY (`cat_id`) REFERENCES `category` (`cat_id`),
+  KEY `fk_seller_product` (`seller_id`),
+  CONSTRAINT `fk_seller_product` FOREIGN KEY (`seller_id`) REFERENCES `seller` (`seller_id`)
 );
 
 CREATE TABLE `pet_supplies`.`user` (
@@ -59,10 +72,13 @@ CREATE TABLE `pet_supplies`.`address` (
 `EMAIL` VARCHAR(50) NOT NULL,
 `PHONE` VARCHAR(50) NOT NULL,
 `COUNTRY` VARCHAR(20) NOT NULL,
-`USER_ID` INT NOT NULL,
+`USER_ID` INT,
+`SELLER_ID` INT(10),
 PRIMARY KEY (`ADDRESS_ID`),
 KEY `fk_user_address` (`USER_ID`),
-CONSTRAINT `fk_user_address` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID`)
+CONSTRAINT `fk_user_address` FOREIGN KEY (`USER_ID`) references `user` (`USER_ID`),
+KEY `fk_seller_address` (`SELLER_ID`),
+CONSTRAINT `fk_seller_address` FOREIGN KEY (`SELLER_ID`) references `seller` (`SELLER_ID`)
 );
 
 
@@ -125,61 +141,70 @@ INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('101', 
 INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('102', 'Birds', 'BIRDS');
 INSERT INTO `pet_supplies`.`category` (`CAT_ID`, `NAME`, `CODE`) VALUES ('103', 'Rabbit ', 'RABBIT');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1000', 'BENGAL', 'Bengal cat', '2500', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`seller` (`seller_id`, `NAME`, `CODE`) VALUES ('100', 'BLR seller', 'S1');
+INSERT INTO `pet_supplies`.`seller` (`seller_id`, `NAME`, `CODE`) VALUES ('101', 'NLR seller', 'S2');
+INSERT INTO `pet_supplies`.`seller` (`seller_id`, `NAME`, `CODE`) VALUES ('102', 'MUM seller', 'A1');
+INSERT INTO `pet_supplies`.`seller` (`seller_id`, `NAME`, `CODE`) VALUES ('103', 'CHN seller', 'A2');
+
+
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1000', 'BENGAL', 'Bengal cat', '2500', 'EUR', 1, '1', '100','100');
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('2', 'Cats', '/images/cats/himalayan.jpg', '1000');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1001', 'HIMALAYAN', 'Himalayan cat', '1500', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1001', 'HIMALAYAN', 'Himalayan cat', '1500', 'EUR', 1, '1', '100',100);
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1002', 'Bombay', 'Bombay', '2000', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1002', 'Bombay', 'Bombay', '2000', 'EUR', 1, '1', '100',101);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('8', 'Cats', '/images/cats/bombay.jpg', '1002');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1003', 'Persian', 'Persian', '2500', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1003', 'Persian', 'Persian', '2500', 'EUR', 1, '1', '100',102);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('9', 'Cats', '/images/cats/persian.jpg', '1003');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1004', 'Scottish Fold', 'Scottish Fold', '3500', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1004', 'Scottish Fold', 'Scottish Fold', '3500', 'EUR', 1, '1', '100',102);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('10', 'Cats', '/images/cats/scottish.jpg', '1004');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1005', 'Farmina Matisse Salmon', 'Farmina Matisse Salmon', '100', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1005', 'Farmina Matisse Salmon', 'Farmina Matisse Salmon', '100', 'EUR', 1, '1', '100',103);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('11', 'Cats', '/images/cats/FarminaMatisseSalmon.jpg', '1005');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1006', 'Whiskas Kitten Cat Food', 'Whiskas Kitten Cat Food Junior Ocean Fish', '300', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1006', 'Whiskas Kitten Cat Food', 'Whiskas Kitten Cat Food Junior Ocean Fish', '300', 'EUR', 1, '1', '100',103);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('12', 'Cats', '/images/cats/WhiskasOceanFish.jpg', '1006');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('1007', 'Drools Adult Cat Food', 'Drools Adult Cat Food Ocean Fish', '500', 'EUR', '1', '1', '100');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('1007', 'Drools Adult Cat Food', 'Drools Adult Cat Food Ocean Fish', '500', 'EUR', 1, '1', '100',102);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('13', 'Cats', '/images/cats/DroolsOceanFish.jpg', '1007');
 
 
 
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2000', 'Dachshund', 'Dachshund', '4500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2000', 'Dachshund', 'Dachshund', '4500', 'EUR', 1, '1', '101',100);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('3', 'Dogs', '/images/dachshund.jpg', '2000');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2001', 'Airedale Terrier', 'Airedale Terrier', '3500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2001', 'Airedale Terrier', 'Airedale Terrier', '3500', 'EUR', 1, '1', '101',100);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('4', 'Dogs', '/images/airedale.jpg', '2001');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2002', 'Barbet', 'Barbet', '5500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2002', 'Barbet', 'Barbet', '5500', 'EUR', 1, '1', '101',100);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('5', 'Dogs', '/images/barbet.jpg', '2002');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2003', 'Boxer', 'Boxer', '3500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2003', 'Boxer', 'Boxer', '3500', 'EUR', 1, '1', '101',102);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('6', 'Dogs', '/images/boxer.jpg', '2003');
 
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2004', 'Cockapoo', 'Cockapoo', '6500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2004', 'Cockapoo', 'Cockapoo', '6500', 'EUR', 1, '1', '101',102);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('7', 'Dogs', '/images/cockapoo.jpg', '2004');
 
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2005', 'Pedigree Adult Dog Food', 'Pedigree Adult Dog Food Chicken', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2005', 'Pedigree Adult Dog Food', 'Pedigree Adult Dog Food Chicken', '500', 'EUR', 1, '1', '101',103);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('14', 'Dogs', '/images/PedigreeAdultDogFoodChicken.jpg', '2005');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2006', 'Choostix Dog Feeding Bowl Steel', 'Choostix Dog Feeding Bowl Steel', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2006', 'Choostix Dog Feeding Bowl Steel', 'Choostix Dog Feeding Bowl Steel', '500', 'EUR', 1, '1', '101',102);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('15', 'Dogs', '/images/ChoostixDogFeedingBowlSteel.jpg', '2006');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2007', 'Royal Canin Giant Puppy', 'Royal Canin Giant Puppy, 4 kg', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2007', 'Royal Canin Giant Puppy', 'Royal Canin Giant Puppy, 4 kg', '500', 'EUR', 1, '1', '101',103);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('16', 'Dogs', '/images/RoyalCaninGiantPuppy.jpg', '2007');
 
-INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`) VALUES ('2008', 'Choostix Dog Rope', 'Choostix Dog Rope Chain Synthetic Yarn, Medium', '500', 'EUR', '1', '1', '101');
+INSERT INTO `pet_supplies`.`product` (`product_id`, `name`, `description`, `price`, `currency`, `status`, `quantity`, `cat_id`,`seller_id`) VALUES ('2008', 'Choostix Dog Rope', 'Choostix Dog Rope Chain Synthetic Yarn, Medium', '500', 'EUR', 1, '1', 101);
 INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUES ('17', 'Dogs', '/images/ChoostixDogRope.jpg', '2008');
 
-
+#alter table `pet_supplies`.`seller` add column `email_id` varchar(50);
+#alter table `pet_supplies`.`seller` add column `phone` varchar(50);
+alter table `pet_supplies`.`seller` add column `active` boolean;
+alter table `pet_supplies`.`seller` add column `password` varchar(50);
 commit;
 

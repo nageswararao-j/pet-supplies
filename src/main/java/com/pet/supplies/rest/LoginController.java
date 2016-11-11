@@ -6,7 +6,7 @@ package com.pet.supplies.rest;
  */
 import org.apache.log4j.Logger;
 
-import com.pet.supplies.model.AuthenticateUserModel;
+import com.pet.supplies.common.model.AuthenticateUserModel;
 import com.pet.supplies.service.LoginService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +55,9 @@ public class LoginController
       else
       {
          userModel = loginService.validateLogin(model);
+      }
+      if(userModel.isPresent()){
+         return new ResponseEntity<AuthenticateUserModel>(userModel, HttpStatus.FOUND);
       }
       if (userModel != null && !userModel.isActive())
       {

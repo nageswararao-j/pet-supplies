@@ -1,6 +1,6 @@
 package com.pet.supplies.repository;
 
-import com.pet.supplies.domain.Orders;
+import com.pet.supplies.common.domain.Orders;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
@@ -17,15 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderRepository extends CrudRepository<Orders, Long>
 {
-
-   /**
-    * TODO
-    * 
-    * @param order
-    */
-   @Override
-   @SuppressWarnings("unchecked")
-   public Orders save(Orders cartItem);
 
    @Query("select orders from Orders orders inner join orders.user u where u.id=:userId")
    public List<Orders> findOrdersByUser(@Param("userId") Long userId);
