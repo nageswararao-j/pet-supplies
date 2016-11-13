@@ -2,29 +2,19 @@ CREATE TABLE `pet_supplies`.`category` (
 `CAT_ID` INT NOT NULL AUTO_INCREMENT,
 `NAME` VARCHAR(40),
 `CODE` VARCHAR(20),
+`seller_id` int(20),
 PRIMARY KEY (`CAT_ID`)
 );
 
 CREATE TABLE `pet_supplies`.`seller` (
 `SELLER_ID` INT(10) NOT NULL AUTO_INCREMENT,
-`NAME` VARCHAR(40),
+`NAME` VARCHAR(100),
 `CODE` VARCHAR(20),
-`EMAIL` VARCHAR(50) NOT NULL,
+`EMAIL_ID` VARCHAR(50) NOT NULL,
 `PHONE` VARCHAR(50) NOT NULL,
+`PASSWORD` VARCHAR(50) NOT NULL,
 PRIMARY KEY (`SELLER_ID`)
 );
-
-
-CREATE TABLE `pet_supplies`.`image` (
-`IMG_ID` INT NOT NULL AUTO_INCREMENT,
-`NAME` VARCHAR(200),
-`URL` VARCHAR(40),
-`product_id` INT(11) NOT NULL,
-PRIMARY KEY (`IMG_ID`),
-KEY `fk_product` (`product_id`),
-  CONSTRAINT `fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-);
-
 
 CREATE TABLE `pet_supplies`.`product` (
   `product_id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -42,6 +32,19 @@ CREATE TABLE `pet_supplies`.`product` (
   KEY `fk_seller_product` (`seller_id`),
   CONSTRAINT `fk_seller_product` FOREIGN KEY (`seller_id`) REFERENCES `seller` (`seller_id`)
 );
+
+
+CREATE TABLE `pet_supplies`.`image` (
+`IMG_ID` INT NOT NULL AUTO_INCREMENT,
+`NAME` VARCHAR(200),
+`URL` VARCHAR(40),
+`product_id` INT(11) NOT NULL,
+PRIMARY KEY (`IMG_ID`),
+KEY `fk_product` (`product_id`),
+  CONSTRAINT `fk_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
+);
+
+
 
 CREATE TABLE `pet_supplies`.`user` (
 `USER_ID` INT(10) NOT NULL AUTO_INCREMENT,
@@ -205,6 +208,7 @@ INSERT INTO `pet_supplies`.`image` (`IMG_ID`, `NAME`, `URL`, `product_id`) VALUE
 #alter table `pet_supplies`.`seller` add column `email_id` varchar(50);
 #alter table `pet_supplies`.`seller` add column `phone` varchar(50);
 alter table `pet_supplies`.`seller` add column `active` boolean;
-alter table `pet_supplies`.`seller` add column `password` varchar(50);
+alter table `pet_supplies`.`seller` drop column `email` ;
+alter table `pet_supplies`.`category` add column `seller_id` int(20);
 commit;
 
