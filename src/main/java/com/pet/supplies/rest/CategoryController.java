@@ -41,7 +41,7 @@ public class CategoryController
    @RequestMapping(value = "/{code}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<List<CategoryModel>> loadProductsByCategory(@PathVariable String code)
    {
-      logger.info("CategoryController.loadPetsBySelectedCategory called");
+      logger.info("CategoryController.loadProductsByCategory called");
       List<CategoryModel> products = new ArrayList<CategoryModel>();
       if (StringUtils.equals(code, BusinessConstants.CATEGORY_ALL))
       {

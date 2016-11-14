@@ -6,7 +6,6 @@ import com.pet.supplies.common.mapper.EntityToModelMapper;
 import com.pet.supplies.common.domain.Address;
 import com.pet.supplies.common.domain.User;
 import com.pet.supplies.common.domain.AuthenticateUser;
-import com.pet.supplies.common.model.AddressModel;
 import com.pet.supplies.common.model.AuthenticateUserModel;
 import com.pet.supplies.repository.LoginRepository;
 import com.pet.supplies.repository.UserRepository;

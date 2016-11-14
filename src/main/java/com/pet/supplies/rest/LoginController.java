@@ -32,13 +32,6 @@ public class LoginController
    @Setter
    private LoginService loginService;
 
-   @RequestMapping(value = "/login/success")
-   public String landing()
-   {
-      return "/index.html";
-
-   }
-
    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<AuthenticateUserModel> login(@RequestBody AuthenticateUserModel model)
    {

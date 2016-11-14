@@ -40,7 +40,7 @@ public class OrderController
    @RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<Set<OrdersModel>> saveOrder(@RequestBody List<OrdersModel> models)
    {
-      logger.info("CartController.loadCartItems called");
+      logger.info("OrderController.saveOrder called");
       if (CollectionUtils.isEmpty(models))
       {
          return new ResponseEntity<Set<OrdersModel>>(HttpStatus.NOT_FOUND);
@@ -53,7 +53,7 @@ public class OrderController
    @RequestMapping(value = "/load/{userId}", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<List<OrdersModel>> findOrdersByUser(@PathVariable Long userId)
    {
-      logger.info("CartController.findOrdersByUser called");
+      logger.info("OrderController.findOrdersByUser called");
       if (userId == null)
       {
          return new ResponseEntity<List<OrdersModel>>(HttpStatus.NOT_FOUND);

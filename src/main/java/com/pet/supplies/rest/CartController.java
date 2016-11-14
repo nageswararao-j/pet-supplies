@@ -79,7 +79,7 @@ public class CartController
    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
    public ResponseEntity<MessageTemplate> updateCartItemQuantity(@RequestBody CartItemModel model)
    {
-      logger.info("CartController.updateCartItem called");
+      logger.info("CartController.updateCartItemQuantity called");
       if (model == null)
       {
          return new ResponseEntity<MessageTemplate>(HttpStatus.NOT_FOUND);
